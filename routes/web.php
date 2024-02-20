@@ -21,6 +21,14 @@ Route::get('/articoli',[articoli::class,'index'])->name('articoli');
 
 Route::get('/test',[articoli::class,'saveToDatabase'])->name('insert');
 
-Route::get('/articoli/create',[articoli::class,'create'])->name('articoli.create');
+
 
 Route::post('/articoli/store',[articoli::class,'store'])->name('articoli.store');
+
+
+
+Route::middleware('auth')->group(function() {
+Route::get('/user/profile',[homepage::class,'settingsProfile'])->name('profile');
+Route::get('/email/verify',[homepage::class,'verifyEmail'])->name('verifyEmail');
+Route::get('/articoli/create',[articoli::class,'create'])->name('articoli.create');
+});
